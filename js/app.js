@@ -16,15 +16,25 @@ window.addEventListener("DOMContentLoaded", () => {
     canvas3.width = 600;
     canvas3.height = 600;
 
+    
+
+
     //global variables
     let grid = 80;
     let keys = [];
     let score = 0;
-    let collisions = 0;
     let frame = 0;
     let gameSpeed = 1;
     let streetObstacles = [];
     let trashObstacles = [];
+
+    //show level
+    let showLevel = document.querySelector('span')
+    showLevel.innerText = score
+
+    //images
+    // let background = new Image();
+    // background.src = ''
 
     // raccoon class
     class Raccoon {
@@ -87,7 +97,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     //make obstacles
     function obstacles(){
-        //lane 1
+        //cars
         for (let i = 0; i < 3; i++){
             let x = i * 350;
             streetObstacles.push(new Obstacle(x, canvas1.height - grid * 2 - 20, grid * 2, grid, 'car', 1))
@@ -98,14 +108,16 @@ window.addEventListener("DOMContentLoaded", () => {
             streetObstacles.push(new Obstacle(x, canvas1.height - grid * 3 - 20, grid * 2, grid, 'car', -2))
             
         }
+
+        //trash
         for (let i = 0; i < 3; i++){
             let x = i * 250;
-            streetObstacles.push(new Obstacle(x, canvas1.height - grid * 5 - 20, grid * 1, grid, 'trash', 2))
+            trashObstacles.push(new Obstacle(x, canvas1.height - grid * 5 - 20, grid * 1, grid, 'trash', 2))
             
         }
         for (let i = 0; i < 3; i++){
             let x = i * 200;
-            streetObstacles.push(new Obstacle(x, canvas1.height - grid * 6 - 20, grid * 2, grid, 'trash', -1))
+            trashObstacles.push(new Obstacle(x, canvas1.height - grid * 6 - 20, grid * 2, grid, 'trash', -1))
             
         }
     }
@@ -116,7 +128,15 @@ window.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < streetObstacles.length; i++){
             streetObstacles[i].update()
             streetObstacles[i].draw()
+            
         }
+        for (let i = 0; i < streetObstacles.length; i++){
+            trashObstacles[i].update()
+            trashObstacles[i].draw()
+            
+        }
+
+        
 
     }
 
@@ -130,6 +150,7 @@ window.addEventListener("DOMContentLoaded", () => {
     function animate(){
         ctx3.clearRect(0,0, canvas1.width, canvas1.height)
         ctx2.clearRect(0,0, canvas1.width, canvas1.height)
+        // ctx1.drawImage(background, 0 , 0, canvas1.width, canvas1.height)
         moveObstacles()
         raccoon.draw()
         
@@ -212,6 +233,9 @@ window.addEventListener("DOMContentLoaded", () => {
     //run when leave canvas top
     function win(){
         score ++
+        showLevel.innerText = score
+        console.log(score)
+        gameSpeed += .5
         raccoon.x = canvas1.width/2 - raccoon.width/2
         raccoon.y = canvas1.height - raccoon.height * 1.70
     }

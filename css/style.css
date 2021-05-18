@@ -8,6 +8,15 @@
     transform: translate(-50%, -50%);
     background: url('../images/background.png')
 }
+h1{
+text-align: center;
+margin-top: 0;
+}
+
+.title{
+    display: flex;
+    justify-content: space-around;
+}
 
 canvas {
     position: absolute;
