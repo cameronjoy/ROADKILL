@@ -118,7 +118,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         for (let i = 0; i < 3; i++){
             let x = i * 200;
-            trashObstacles.push(new Obstacle(x, canvas1.height - grid * 6 - 20, grid * 2, grid, 'trash', -1))
+            trashObstacles.push(new Obstacle(x, canvas1.height - grid * 6 - 20, grid * 2, grid, 'bigTrash', -1))
             
         }
     }
@@ -155,7 +155,7 @@ window.addEventListener("DOMContentLoaded", () => {
         moveObstacles()
         raccoon.draw()
         detectHit()
-        // detectFloat()
+        detectFloat()
         
         requestAnimationFrame(animate)
     }
@@ -183,19 +183,28 @@ window.addEventListener("DOMContentLoaded", () => {
 
 //float on logs
 function detectFloat(){
+       
+    if (raccoon.y < 250 && raccoon.y > 100){
+        trashObstacles.forEach(function(obstacle) {
+            trashObstacles.forEach(obstacle => {
+                if(raccoon.x < obstacle.x + obstacle.width &&
+                    raccoon.x + raccoon.width > obstacle.x &&
+                    raccoon.y < obstacle.y + obstacle.height &&
+                    raccoon.y + raccoon.height > obstacle.y){
+                        if(obstacle.type == 'trash'){
+                            raccoon.x =  obstacle.x + (obstacle.width/2) - raccoon.width/2
+                        }
+                        if(obstacle.type =='bigTrash'){
+                            raccoon.x =  obstacle.x
+                        }
+                        
+                    } 
+            })
+        });
+    }
         
         
-        
-    trashObstacles.forEach(function(obstacle) {
-        trashObstacles.forEach(obstacle => {
-            if(raccoon.x > obstacle.x - obstacle.width &&
-                raccoon.x - raccoon.width < obstacle.x &&
-                raccoon.y > obstacle.y - obstacle.height &&
-                raccoon.y - raccoon.height < obstacle.y){
-                    console.log('hit')
-                }
-        })
-    });
+    
 };
     
 
