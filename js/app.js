@@ -33,8 +33,8 @@ window.addEventListener("DOMContentLoaded", () => {
     showLevel.innerText = score
 
     //images
-    // let background = new Image();
-    // background.src = ''
+    let background = new Image();
+    background.src = '../images/background-img.png'
 
     // raccoon class
     class Raccoon {
@@ -78,6 +78,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         
         draw(){
+            ctx2.fillStyle = 'red'
             ctx2.fillRect(this.x, this.y, this.width, this.height)
         }
 
@@ -153,12 +154,49 @@ window.addEventListener("DOMContentLoaded", () => {
         // ctx1.drawImage(background, 0 , 0, canvas1.width, canvas1.height)
         moveObstacles()
         raccoon.draw()
+        detectHit()
+        // detectFloat()
         
         requestAnimationFrame(animate)
     }
 
     animate()
 
+    //collision detection
+    function detectHit(){
+        
+        
+        
+    streetObstacles.forEach(function(obstacle) {
+        streetObstacles.forEach(obstacle => {
+            if(raccoon.x < obstacle.x + obstacle.width &&
+                raccoon.x + raccoon.width > obstacle.x &&
+                raccoon.y < obstacle.y + obstacle.height &&
+                raccoon.y + raccoon.height > obstacle.y){
+                    console.log('hit')
+                    raccoon.x = canvas1.width/2 - raccoon.width/2
+                    raccoon.y = canvas1.height - raccoon.height * 1.70
+                }
+        })
+    });
+};
+
+//float on logs
+function detectFloat(){
+        
+        
+        
+    trashObstacles.forEach(function(obstacle) {
+        trashObstacles.forEach(obstacle => {
+            if(raccoon.x > obstacle.x - obstacle.width &&
+                raccoon.x - raccoon.width < obstacle.x &&
+                raccoon.y > obstacle.y - obstacle.height &&
+                raccoon.y - raccoon.height < obstacle.y){
+                    console.log('hit')
+                }
+        })
+    });
+};
     
 
 
