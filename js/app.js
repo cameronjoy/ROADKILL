@@ -54,6 +54,10 @@ window.addEventListener("DOMContentLoaded", () => {
         trash.src = '../images/trash.png'
         let bigTrash = new Image()
         bigTrash.src ='../images/big-trash.png'
+        let car = new Image()
+        car.src = '../images/cars.png'
+        let raccoonSprite = new Image()
+        raccoonSprite.src = '../images/raccoon.png'
 
         // raccoon class
         class Raccoon {
@@ -74,8 +78,9 @@ window.addEventListener("DOMContentLoaded", () => {
             //create raccoon
             draw(){
                 
-                ctx3.fillStyle = 'green'
-                ctx3.fillRect(this.x, this.y, this.width, this.height)
+                
+                ctx3.drawImage(raccoonSprite, this.frameX * this.spriteWidth, this.frameY * this.spriteHeight, this.spriteHeight, this.spriteWidth, this.x - 25, this.y - 25, this.width * 2, this.height * 2
+                    )
             }
 
             //
@@ -104,7 +109,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 }else if(this.type === 'bigTrash'){
                     ctx2.drawImage(bigTrash, this.x, this.y, this.width, this.height)
                 }else if(this.type === 'car'){
-                    ctx2.fillRect( this.x, this.y, this.width, this.height)
+                    ctx2.drawImage(car, this.x, this.y, this.width, this.height)
                 }
                 
                 
@@ -271,6 +276,8 @@ window.addEventListener("DOMContentLoaded", () => {
                     if(raccoon.moving === false){
                         raccoon.y -= grid;
                         raccoon.moving = true
+                        raccoon.frameX = 1
+                        raccoon.frameY = 0
                     }
                 }
                     if (raccoon.y < 0){
@@ -287,6 +294,8 @@ window.addEventListener("DOMContentLoaded", () => {
                             if(raccoon.y < canvas1.height - raccoon.height * 2 && raccoon.moving === false){
                                 raccoon.y += grid
                                 raccoon.moving = true
+                                raccoon.frameX = 1
+                                raccoon.frameY = 3
                             }
                         }
                     }
@@ -300,6 +309,8 @@ window.addEventListener("DOMContentLoaded", () => {
                         if(raccoon.moving === false && raccoon.x > raccoon.width ){
                             raccoon.x -= grid
                             raccoon.moving = true
+                            raccoon.frameX = 1
+                            raccoon.frameY = 2
                         }
         
                     }
@@ -313,16 +324,22 @@ window.addEventListener("DOMContentLoaded", () => {
                         if(raccoon.moving === false && raccoon.x < canvas1.width - raccoon.width * 2){
                             raccoon.x += grid
                             this.moving = true
+                            raccoon.frameX = 1
+                            raccoon.frameY = 1
                         }
                     }
                     break;  
             }   
         }  
 
+
         //when not pressing key
         window.addEventListener('keyup', function(e){
+            
             delete raccoon.keys
+            raccoon.frameX = 0
             raccoon.moving = false
+            
         })
 
         //run when leave canvas top
