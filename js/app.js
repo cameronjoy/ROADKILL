@@ -37,6 +37,10 @@ window.addEventListener("DOMContentLoaded", () => {
     //images
     let background = new Image();
     background.src = '../images/background-img.png'
+    let trash = new Image()
+    trash.src = '../images/trash.png'
+    let bigTrash = new Image()
+    bigTrash.src ='../images/big-trash.png'
 
     // raccoon class
     class Raccoon {
@@ -56,6 +60,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         //create raccoon
         draw(){
+            
             ctx3.fillStyle = 'green'
             ctx3.fillRect(this.x, this.y, this.width, this.height)
         }
@@ -81,8 +86,16 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         
         draw(){
-            ctx2.fillStyle = 'red'
-            ctx2.fillRect(this.x, this.y, this.width, this.height)
+            if(this.type === "trash"){
+                ctx2.drawImage(trash, this.x, this.y, this.width, this.height)
+            }else if(this.type === 'bigTrash'){
+                ctx2.drawImage(bigTrash, this.x, this.y, this.width, this.height)
+            }else if(this.type === 'car'){
+                ctx2.fillRect( this.x, this.y, this.width, this.height)
+            }
+            
+            
+           
         }
 
         update(){
@@ -116,12 +129,12 @@ window.addEventListener("DOMContentLoaded", () => {
         //trash
         for (let i = 0; i < 3; i++){
             let x = i * 250;
-            trashObstacles.push(new Obstacle(x, canvas1.height - grid * 5 - 20, grid * 1, grid, 'trash', 2))
+            trashObstacles.push(new Obstacle(x, canvas1.height - grid * 5 - 20, grid * 1, grid, 'trash', 1))
             
         }
         for (let i = 0; i < 3; i++){
             let x = i * 200;
-            trashObstacles.push(new Obstacle(x, canvas1.height - grid * 6 - 20, grid * 2, grid, 'bigTrash', -1))
+            trashObstacles.push(new Obstacle(x, canvas1.height - grid * 6 - 20, grid * 2, grid, 'bigTrash', -2))
             
         }
     }
