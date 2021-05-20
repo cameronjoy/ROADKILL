@@ -27,6 +27,8 @@ window.addEventListener("DOMContentLoaded", () => {
     let gameSpeed = 1;
     let streetObstacles = [];
     let trashObstacles = [];
+    
+    
 
     //show level
     let showLevel = document.querySelector('span')
@@ -49,6 +51,7 @@ window.addEventListener("DOMContentLoaded", () => {
             this.frameX = 0
             this.frameY = 0
             this.keys = 0
+            this.onTrash = false
     }
 
         //create raccoon
@@ -153,9 +156,11 @@ window.addEventListener("DOMContentLoaded", () => {
         ctx2.clearRect(0,0, canvas1.width, canvas1.height)
         // ctx1.drawImage(background, 0 , 0, canvas1.width, canvas1.height)
         moveObstacles()
+        
         raccoon.draw()
-        detectHit()
         detectFloat()
+        detectHit()
+        
         
         requestAnimationFrame(animate)
     }
@@ -168,7 +173,7 @@ window.addEventListener("DOMContentLoaded", () => {
         
         
     streetObstacles.forEach(function(obstacle) {
-        streetObstacles.forEach(obstacle => {
+        
             if(raccoon.x < obstacle.x + obstacle.width &&
                 raccoon.x + raccoon.width > obstacle.x &&
                 raccoon.y < obstacle.y + obstacle.height &&
@@ -177,35 +182,52 @@ window.addEventListener("DOMContentLoaded", () => {
                     raccoon.x = canvas1.width/2 - raccoon.width/2
                     raccoon.y = canvas1.height - raccoon.height * 1.70
                 }
-        })
+        
     });
 };
 
 //float on logs
 function detectFloat(){
+    
        
     if (raccoon.y < 250 && raccoon.y > 100){
-        trashObstacles.forEach(function(obstacle) {
-            trashObstacles.forEach(obstacle => {
+        
+            let onTrash = trashObstacles.some(function(obstacle){
+            
                 if(raccoon.x < obstacle.x + obstacle.width &&
                     raccoon.x + raccoon.width > obstacle.x &&
                     raccoon.y < obstacle.y + obstacle.height &&
                     raccoon.y + raccoon.height > obstacle.y){
                         if(obstacle.type == 'trash'){
-                            raccoon.x =  obstacle.x + (obstacle.width/2) - raccoon.width/2
+                            raccoon.x =  obstacle.x + (obstacle.width/2) - (raccoon.width/2)
+                            
+                        } if(obstacle.type =='bigTrash'){
+                            raccoon.x =  obstacle.x + (obstacle.width/2) - (raccoon.width/2)
                         }
-                        if(obstacle.type =='bigTrash'){
-                            raccoon.x =  obstacle.x
+                        return true
+                    } else{
+                        return false
+                    }
+                    
+                })
+
+            if(onTrash == true){
+                console.log('ontrash')
+            } 
+            if (onTrash == false){
+                raccoon.x = canvas1.width/2 - raccoon.width/2
+                    raccoon.y = canvas1.height - raccoon.height * 1.70
+            }
+                        
+                         if(onTrash == false){
+                            console.log('hit')
                         }
                         
+                        
                     } 
-            })
-        });
-    }
-        
-        
-    
-};
+                }        
+            
+       
     
 
 
