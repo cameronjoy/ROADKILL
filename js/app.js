@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
         canvas4.height = 600;
 
         let youDied = new Image()
-        youDied.src = '../images/roadkill.png'
+        youDied.src = '/../images/roadkill.png'
 
 
         
@@ -73,15 +73,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
         //images
         let background = new Image();
-        background.src = '../images/background-img.png'
+        background.src = '/../images/background-img.png'
         let trash = new Image()
-        trash.src = '../images/trash.png'
+        trash.src = '/../images/trash.png'
         let bigTrash = new Image()
-        bigTrash.src ='../images/big-trash.png'
+        bigTrash.src ='/../images/big-trash.png'
         let car = new Image()
-        car.src = '../images/cars.png'
+        car.src = '/../images/cars.png'
         let raccoonSprite = new Image()
-        raccoonSprite.src = '../images/raccoon.png'
+        raccoonSprite.src = '/../images/raccoon.png'
 
         // raccoon class
         class Raccoon {
