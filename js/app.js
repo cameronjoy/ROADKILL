@@ -8,9 +8,23 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+        let canvas4 = document.getElementById('canvas4')
+        let ctx4 = canvas4.getContext("2d")
+        canvas4.width = 600;
+        canvas4.height = 600;
+
+        
+
     function startGame(){   
+        
+
+
         let startScreen = document.getElementById('startScreen')
         startScreen.style.display = 'none' 
+
+        
+
+        
         
         let canvas1 = document.getElementById('canvas1')
         let ctx1 = canvas1.getContext("2d")
@@ -28,6 +42,9 @@ window.addEventListener("DOMContentLoaded", () => {
         let ctx3 = canvas3.getContext("2d")
         canvas3.width = 600;
         canvas3.height = 600;
+
+
+        
 
         
 
@@ -212,6 +229,7 @@ window.addEventListener("DOMContentLoaded", () => {
                         console.log('hit')
                         raccoon.x = canvas1.width/2 - raccoon.width/2
                         raccoon.y = canvas1.height - raccoon.height * 1.70
+                        
                     }
             
         });
@@ -232,6 +250,8 @@ window.addEventListener("DOMContentLoaded", () => {
                             if(obstacle.type == 'trash'){
                                 raccoon.x =  obstacle.x + (obstacle.width/2) - (raccoon.width/2)
                                 
+                                
+                                
                             } if(obstacle.type =='bigTrash'){
                                 raccoon.x =  obstacle.x + (obstacle.width/2) - (raccoon.width/2)
                             }
@@ -248,10 +268,12 @@ window.addEventListener("DOMContentLoaded", () => {
                 if (onTrash == false){
                     raccoon.x = canvas1.width/2 - raccoon.width/2
                         raccoon.y = canvas1.height - raccoon.height * 1.70
+                        
                 }
                             
                             if(onTrash == false){
                                 console.log('hit')
+                                
                             }
                             
                             
@@ -351,6 +373,15 @@ window.addEventListener("DOMContentLoaded", () => {
             raccoon.x = canvas1.width/2 - raccoon.width/2
             raccoon.y = canvas1.height - raccoon.height * 1.70
         }
+
+
+        let youDied = new Image()
+        youDied.src = "../images/roadkill.png"
+
+        function roadKill(){
+            ctx3.drawImage(youDied, 0 , 0)
+        }
+        
         
     }
 })
