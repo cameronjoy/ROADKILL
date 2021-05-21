@@ -8,10 +8,8 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-        let canvas4 = document.getElementById('canvas4')
-        let ctx4 = canvas4.getContext("2d")
-        canvas4.width = 600;
-        canvas4.height = 600;
+        
+
 
         
 
@@ -43,6 +41,14 @@ window.addEventListener("DOMContentLoaded", () => {
         canvas3.width = 600;
         canvas3.height = 600;
 
+        let canvas4 = document.getElementById('canvas4')
+        let ctx4 = canvas4.getContext("2d")
+        canvas4.width = 600;
+        canvas4.height = 600;
+
+        let youDied = new Image()
+        youDied.src = '../images/roadkill.png'
+
 
         
 
@@ -57,6 +63,7 @@ window.addEventListener("DOMContentLoaded", () => {
         let gameSpeed = 1;
         let streetObstacles = [];
         let trashObstacles = [];
+        let hitCar = false
         
         
 
@@ -108,6 +115,7 @@ window.addEventListener("DOMContentLoaded", () => {
         
         }
 
+        
 
         //class for obstacles
         class Obstacle {
@@ -226,6 +234,8 @@ window.addEventListener("DOMContentLoaded", () => {
                     raccoon.x + raccoon.width > obstacle.x &&
                     raccoon.y < obstacle.y + obstacle.height &&
                     raccoon.y + raccoon.height > obstacle.y){
+                        
+
                         console.log('hit')
                         raccoon.x = canvas1.width/2 - raccoon.width/2
                         raccoon.y = canvas1.height - raccoon.height * 1.70
@@ -233,6 +243,45 @@ window.addEventListener("DOMContentLoaded", () => {
                     }
             
         });
+
+
+        //test
+
+        // if (raccoon.y < 450 && raccoon.y > 300){
+        //     hitCar = false
+        //  hitCar = streetObstacles.some(function(obstacle){
+                
+        //     if(raccoon.x < obstacle.x + obstacle.width &&
+        //         raccoon.x + raccoon.width > obstacle.x &&
+        //         raccoon.y < obstacle.y + obstacle.height &&
+        //         raccoon.y + raccoon.height > obstacle.y){
+        //             return true
+        //         } else{
+        //             return false
+        //         }
+                
+        //     })
+
+        // if(hitCar == true){
+        //     // ctx4.drawImage(youDied,0,0)
+        //     console.log('hit')
+            
+            
+        // } else if (hitCar == false){
+            
+        //     console.log('ontrash')
+            
+                
+        // }
+                    
+                
+                    
+                    
+        //         }   
+            
+
+
+
     };
 
     //float on logs
@@ -248,6 +297,7 @@ window.addEventListener("DOMContentLoaded", () => {
                         raccoon.y < obstacle.y + obstacle.height &&
                         raccoon.y + raccoon.height > obstacle.y){
                             if(obstacle.type == 'trash'){
+                                
                                 raccoon.x =  obstacle.x + (obstacle.width/2) - (raccoon.width/2)
                                 
                                 
@@ -266,15 +316,15 @@ window.addEventListener("DOMContentLoaded", () => {
                     console.log('ontrash')
                 } 
                 if (onTrash == false){
+                    
                     raccoon.x = canvas1.width/2 - raccoon.width/2
                         raccoon.y = canvas1.height - raccoon.height * 1.70
+                        // ctx4.drawImage(youDied,0,0)
                         
                 }
                             
-                            if(onTrash == false){
-                                console.log('hit')
-                                
-                            }
+                            
+
                             
                             
                         } 
@@ -375,12 +425,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        let youDied = new Image()
-        youDied.src = "../images/roadkill.png"
-
-        function roadKill(){
-            ctx3.drawImage(youDied, 0 , 0)
-        }
+        
         
         
     }
