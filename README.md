@@ -6,11 +6,7 @@ Oh no! Youve been seperated from your glorious heap of garbage! To get back home
 - auto moving cars and trash bags
 - use arrow keys to move raccoon
 - if hit by car, game over
-
-
 - if fall into water, game over
-- victory screen and game over screen
-- use canvas 
 
 # Wireframe
 ![IMG_6887](https://user-images.githubusercontent.com/75300800/118324062-8b1b8a80-b4cf-11eb-82fb-e71e28e34d76.jpg)
@@ -18,7 +14,6 @@ Oh no! Youve been seperated from your glorious heap of garbage! To get back home
 
 # Stretch Goals
 - character selection screen(raccoon, possum, ect)
-- collect trinkets for extra points?
 
 # Roadblocks
 - figuring out x y mechanics and canvas
